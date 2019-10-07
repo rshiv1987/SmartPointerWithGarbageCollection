@@ -137,7 +137,9 @@ Pointer<T, size>::~Pointer(){
     typename std::list<PtrDetails<T> >::iterator p;
     p = findPtrInfo(addr);
     // decrement ref count
-    p->refcount--;
+    if(p->refcount){
+	    p->refcount--;
+    }
     // Collect garbage when a pointer goes out of scope.
     collect();
 }
